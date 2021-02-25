@@ -123,9 +123,9 @@ um repo pode ter várias tags e o conjunto repo:tag define uma imagem.
 Nome da imagem
 
 repositorio:tag
-
+```
 docker image list
-
+```
 formas de criar uma imagem
 
 # commit
@@ -133,23 +133,27 @@ formas de criar uma imagem
 É possível criar imagens executando o comando commit,
 relacionado a um container. Esse comando usa o status atual
 do container escolhido e cria a imagem com base nele.
-
+```
 docker container run -it --name containercriado ubuntu:16.04 bash
-
+```
 no bash
-
+```
 apt-get update
 apt-get install nginx -y
 exit
-
+```
+```
 docker container stop containercriado
-
+```
+```
 docker container commit containercriado meuubuntu:nginx
-
+```
+```
 docker image list
-
+```
+```
 docker container run -it --rm meuubuntu:nginx dpkg -l nginx
-
+```
 # Dockerfile
 
 Quando se utiliza Dockerfile para gerar uma imagem, basicamente, 
@@ -186,9 +190,9 @@ drão, caso nenhum seja informado na inicialização de um
 container a partir dessa imagem. No exemplo, colocamos o
 comando bash, se essa imagem for usada para iniciar um
 container e não informamos o comando, ele executará o bash.
-
+```
 docker image build -t meuubuntu:nginx_auto
-
+```
 -t      informar o nome da imagem a ser criada.
 
 A sugestão para melhor aproveitar o cache do Dockerfile é
@@ -209,17 +213,18 @@ container são perdidas ao remover o container, ou seja, ao
 utilizar volumes temos maior garantia no armazenamento
 desses dados.
 
-
+```
 docker container run -v /var/lib/container1:/var ubuntu
-
+```
+```
 docker create -v /dbdata --name dbdata postgres bin/true
-
+```
 No comando acima, criamos um container de dados, onde a
 pasta /dbdata pode ser consumida por outros containeres, ou
 seja, o conteúdo da pasta /dbtada poderá ser visualizado e/ou
 editado por outros containeres.
 Para consumir esse volume do container basta utilizar o
 comando:
-
+```
 docker container run -d --volumes-from dbdata --name db2 postgres
-
+```
